@@ -1,6 +1,7 @@
 'use strict'
 
 const User = use('App/Models/User');
+const Database = use('Database')
 
 class UserController {
     async login({ request, auth }){
@@ -19,7 +20,11 @@ class UserController {
 		});
 	return this.login(...arguments);
 	//return { message: "listo"}
-	};
+    };
+    
+    async index({ request, auth, params }) {
+        return await Database.select('*').from('users')
+    }
 }
 
 module.exports = UserController
