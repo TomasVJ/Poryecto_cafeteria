@@ -1,7 +1,7 @@
 'use strict'
 
 const User = use('App/Models/User');
-const Database = use('Database')
+const Database = use('Database');
 
 class UserController {
     async login({ request, auth }){
@@ -23,7 +23,8 @@ class UserController {
     };
     
     async index({ request, auth, params }) {
-        return await Database.select('*').from('users')
+        const users = await Database.select('*').from('users');
+        return users
     }
 }
 

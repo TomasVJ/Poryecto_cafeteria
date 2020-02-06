@@ -25,4 +25,14 @@ Route.group(() => {
   Route.post('users/login', 'UserController.login');
   Route.get('users/list', 'UserController.index');
 
-}).prefix('api/admin')
+  //Categorias
+  Route.get('categorias', 'CategoryController.index');
+  Route.post('categorias/create', 'CategoryController.store'); //necesita {name, description}
+  Route.patch('categorias/update/:id', 'CategoryController.update'); //necesita {name, description}
+  Route.delete('categorias/delete/:id', 'CategoryController.destroy');
+
+  //Productos
+  Route.get('productos', 'ProductController.index');
+  
+
+}).prefix('api/v1')
