@@ -27,12 +27,19 @@ Route.group(() => {
 
   //Categorias
   Route.get('categorias', 'CategoryController.index');
-  Route.post('categorias/create', 'CategoryController.store'); //necesita {name, description}
+  Route.post('categorias/create', 'CategoryController.store');  //necesita {name, description}
   Route.patch('categorias/update/:id', 'CategoryController.update'); //necesita {name, description}
   Route.delete('categorias/delete/:id', 'CategoryController.destroy');
 
   //Productos
-  Route.get('productos', 'ProductController.index');
+  Route.get('productos', 'ProductController.index_all');
+  Route.get('productos/:id', 'ProductController.index_categ'); //id de la categoria correspondiente
+  Route.post('productos/create', 'ProductController.store'); //necesita { name, description, precio, status, category_id }
+  Route.patch('productos/update/:id', 'ProductController.update');
+  Route.delete('producto/delete/:id', 'ProductController.destroy');
+
+  //Mesas
+  
   
 
 }).prefix('api/v1')
