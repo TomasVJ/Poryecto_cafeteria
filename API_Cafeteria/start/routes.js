@@ -38,8 +38,11 @@ Route.group(() => {
   Route.patch('productos/update/:id', 'ProductController.update');
   Route.delete('producto/delete/:id', 'ProductController.destroy');
 
-  //Mesas
-  
+  //Sector
+  Route.get('sectores', 'SectorController.index');
+  Route.post('sector/create', 'SectorController.store');
+  Route.patch('sector/update/:id', 'SectorController.update');
+  Route.delete('sector/delete/:id', 'SectorController.destroy');
   
 
 }).prefix('api/v1')
