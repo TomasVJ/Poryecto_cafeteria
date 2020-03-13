@@ -8,7 +8,6 @@ class SaleSchema extends Schema {
     this.create('sales', (table) => {
       table.increments()
       table.integer('coffeeTable').unsigned().references('id').inTable('CoffeeTables')
-      table.integer('order').unsigned().references('id').inTable('orders')
       table.boolean('status').defaultTo(true)
       table.timestamps()
     })

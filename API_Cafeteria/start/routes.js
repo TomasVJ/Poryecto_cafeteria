@@ -43,6 +43,14 @@ Route.group(() => {
   Route.post('sector/create', 'SectorController.store');
   Route.patch('sector/update/:id', 'SectorController.update');
   Route.delete('sector/delete/:id', 'SectorController.destroy');
+
+  //mesas
+  Route.get('mesas', 'CoffeeTableController.index');
+  Route.post('mesa/create', 'CoffeeTableController.store');
+  Route.patch('mesa/update/:id', 'CoffeeTableController.update');
+  Route.delete('mesa/delete/:id', 'CoffeeTableController.destroy');
+
+  //ordenes
   
 
 }).prefix('api/v1')

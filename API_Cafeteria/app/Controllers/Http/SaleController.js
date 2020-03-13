@@ -4,6 +4,9 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+const Sale = use('App/Models/Sale');
+const Database = use('Database');
+
 /**
  * Resourceful controller for interacting with sales
  */
@@ -11,13 +14,16 @@ class SaleController {
   /**
    * Show a list of all sales.
    * GET sales
-   *
+   *coffeeTable
+   *status
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
+    const sale = await Database.select('*').from('sales');
+    return sale;
   }
 
   /**
@@ -41,6 +47,12 @@ class SaleController {
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
+    const { coffeeTable, status } = request.all();
+    const sale = await Sale.create({
+      coffeeTable, 
+      status
+    });
+    return sale;
   }
 
   /**
@@ -76,6 +88,15 @@ class SaleController {
    * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
+    const { id } = params;
+        const sale = await Sale.find(id);
+        //agregar autentificacion
+        sale.merge(request.only([
+          'coffeeTable', 
+          'status'
+        ]));
+        await sale.save();
+        return sale;
   }
 
   /**
@@ -87,6 +108,10 @@ class SaleController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+    const { id } = params;
+    const sale = await Sale.find(id);
+    await sale.delete();
+    return sale;
   }
 }
 
