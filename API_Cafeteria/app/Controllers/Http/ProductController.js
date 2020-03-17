@@ -2,6 +2,7 @@
 
 const Product = use('App/Models/Product');
 const Category = use('App/Models/Category');
+const ProductDto = use('../../Dto/PruductDto');
 const Database = use('Database');
 
 
@@ -20,11 +21,12 @@ class ProductController {
     }
     
     async store({ auth, request, params }){
-        const { name, description, precio, status, category_id } = request.all();
+        const { name, description, price, status, category_id } = request.all();
         const product = await Product.create({
             name, 
-            description, 
-            precio, 
+            code,
+            description,
+            price, 
             status, 
             category_id
         });
@@ -37,8 +39,9 @@ class ProductController {
         //agregar autentificacion
         product.merge(request.only([
             'name', 
+            'code',
             'description', 
-            'precio', 
+            'price', 
             'status', 
             'category_id'
         ]));
